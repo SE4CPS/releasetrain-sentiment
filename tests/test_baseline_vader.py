@@ -12,7 +12,7 @@ def test_flags_technical_keyword_true_even_for_non_technical_use_of_the_word():
 
 
 def test_flags_technical_keyword_false_for_plain_venting():
-    assert flags_technical_keyword("I am so tired of this company") is False
+    assert flags_technical_keyword("I am so tired of this update") is False
 
 
 def test_vader_sentiment_label_uses_the_narrow_band_by_default():

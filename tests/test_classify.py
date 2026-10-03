@@ -8,7 +8,7 @@ def test_train_and_classify_round_trip():
     texts = [
         "crash on launch every time",
         "app freezes after the update",
-        "I'm so tired of this company",
+        "I'm so tired of this update",
         "another pointless update, ugh",
     ]
     labels = ["TPS", "TPS", "GDS", "GDS"]

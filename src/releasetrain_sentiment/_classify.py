@@ -42,7 +42,7 @@ def build_classifier() -> Pipeline:
         ...     "crash on launch every time",
         ...     "app freezes after the update",
         ...     "cannot install, setup fails immediately",
-        ...     "I am so tired of this company",
+        ...     "I am so tired of this update",
         ...     "another pointless update, ugh",
         ...     "why do they keep ruining the app",
         ... ]

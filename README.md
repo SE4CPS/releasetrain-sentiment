@@ -73,17 +73,17 @@ Check the keyword-contamination issue Reviewer #7 described, directly
 from the command line:
 
 ```
-releasetrain-sentiment keyword-check "That redesign was a massive error" "I am so tired of this company"
+releasetrain-sentiment keyword-check "That redesign was a massive error" "I am so tired of this update"
 # True    That redesign was a massive error
-# False   I am so tired of this company
+# False   I am so tired of this update
 ```
 
 Print both the standard VADER label and the `technical_first` baseline
 label for one or more texts:
 
 ```
-releasetrain-sentiment label "I am so tired of this company"
-# I am so tired of this company
+releasetrain-sentiment label "I am so tired of this update"
+# I am so tired of this update
 #   vader=Negative  technical_first=GDS
 ```
 
@@ -142,7 +142,7 @@ releasetrain-sentiment score --input posts.json --pretty
 from releasetrain_sentiment import flags_technical_keyword
 
 flags_technical_keyword("That redesign was a massive error")  # True
-flags_technical_keyword("I am so tired of this company")       # False
+flags_technical_keyword("I am so tired of this update")       # False
 ```
 
 The first example is the exact contamination Reviewer #7 describes: the
@@ -154,7 +154,7 @@ keyword fires regardless of whether the comment is actually a bug report.
 from releasetrain_sentiment import train_classifier, classify, save_classifier
 
 texts = ["crash on launch every time", "app freezes after the update",
-         "I'm so tired of this company", "another pointless update, ugh"]
+         "I'm so tired of this update", "another pointless update, ugh"]
 labels = ["TPS", "TPS", "GDS", "GDS"]
 
 pipe = train_classifier(texts, labels)

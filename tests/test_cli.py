@@ -55,7 +55,7 @@ def test_score_from_a_file_handles_a_list_of_posts(capsys):
 
 
 def test_keyword_check_prints_true_false_per_text(capsys):
-    code = main(["keyword-check", "That redesign was a massive error", "I am so tired of this company"])
+    code = main(["keyword-check", "That redesign was a massive error", "I am so tired of this update"])
     assert code == 0
     lines = capsys.readouterr().out.strip().splitlines()
     assert lines[0].startswith("True\t")
@@ -63,7 +63,7 @@ def test_keyword_check_prints_true_false_per_text(capsys):
 
 
 def test_label_prints_both_the_vader_and_technical_first_label(capsys):
-    code = main(["label", "I am so tired of this company"])
+    code = main(["label", "I am so tired of this update"])
     assert code == 0
     out = capsys.readouterr().out
     assert "vader=" in out
@@ -73,7 +73,7 @@ def test_label_prints_both_the_vader_and_technical_first_label(capsys):
 def test_classify_with_a_saved_model_prints_a_label_per_text(capsys):
     from releasetrain_sentiment import save_classifier, train_classifier
 
-    texts = ["crash on launch every time", "app freezes after the update", "I'm so tired of this company", "another pointless update, ugh"]
+    texts = ["crash on launch every time", "app freezes after the update", "I'm so tired of this update", "another pointless update, ugh"]
     labels = ["TPS", "TPS", "GDS", "GDS"]
     pipe = train_classifier(texts, labels)
     with tempfile.TemporaryDirectory() as tmp:
