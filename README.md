@@ -45,6 +45,64 @@ summary = trajectory_summary(results)
 `score_posts(list_of_posts)` runs the same thing over a batch, returning
 one results array per input post, same order.
 
+## Command-line interface
+
+Installed alongside the library as the `releasetrain-sentiment` command
+(also runnable as `python -m releasetrain_sentiment`). Each subcommand is a
+thin wrapper around the same function shown above, one-to-one, so the CLI
+and the Python API never drift in behavior from each other.
+
+```
+releasetrain-sentiment --help
+```
+
+Score a post, reading JSON from a file:
+
+```
+releasetrain-sentiment score --input thread.json --pretty
+```
+
+...or piped in from stdin (a JSON array of posts also works, and prints
+one `{"items": ..., "trajectory": ...}` object per post):
+
+```
+echo '{"title": "Update broke my build", "description": "Nothing compiles since 3.2.0", "comments": [{"text": "Known issue, fix coming soon", "author": "dev1", "is_author": true}, {"text": "Same here, very annoying", "author": "user2", "is_author": false}]}' | releasetrain-sentiment score
+```
+
+Check the keyword-contamination issue Reviewer #7 described, directly
+from the command line:
+
+```
+releasetrain-sentiment keyword-check "That redesign was a massive error" "I am so tired of this company"
+# True    That redesign was a massive error
+# False   I am so tired of this company
+```
+
+Print both the standard VADER label and the `technical_first` baseline
+label for one or more texts:
+
+```
+releasetrain-sentiment label "I am so tired of this company"
+# I am so tired of this company
+#   vader=Negative  technical_first=GDS
+```
+
+Classify text(s) with a model you've already trained and saved with
+`save_classifier()` (requires `pip install releasetrain-sentiment[classify]`):
+
+```
+releasetrain-sentiment classify --model tps_gds_model.joblib "the app crashed again"
+```
+
+Pull recent posts from a live ReleaseTrain instance and convert them to
+this package's scoreable shape in one step (requires
+`pip install releasetrain-sentiment[fetch]`):
+
+```
+releasetrain-sentiment fetch --limit 20 --out posts.json
+releasetrain-sentiment score --input posts.json --pretty
+```
+
 ## Modules
 
 - `score.py`: the scorer above. Pure function, no network calls, no
@@ -74,6 +132,9 @@ one results array per input post, same order.
 - `fetch.py`: an optional thin wrapper around ReleaseTrain's
   `/api/reddit` endpoint, isolated from every other module so none of
   them need network access to run or be tested.
+- `cli.py`: the `releasetrain-sentiment` console script (see "Command-line
+  interface" above). Argument parsing and JSON I/O only, no logic of its
+  own - every subcommand calls straight into one of the modules above.
 
 ## Example: the keyword-contamination check
 
