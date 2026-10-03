@@ -3,6 +3,8 @@
 Scores sentiment per comment in a Reddit discussion thread, flagging author
 replies vs. community responses, to measure sentiment divergence over time.
 
+Main developer: [manumathewjiss](https://github.com/manumathewjiss)
+
 ## Install
 
 ```
