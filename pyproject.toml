@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "releasetrain-sentiment"
-version = "0.2.0"
+version = "0.2.1"
 description = "Scores sentiment per comment in a Reddit discussion thread, flagging author replies vs. community responses, to measure sentiment divergence over time."
 readme = "README.md"
 license = "MIT"
