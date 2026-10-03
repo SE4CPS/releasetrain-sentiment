@@ -3,11 +3,6 @@
 Scores sentiment per comment in a Reddit discussion thread, flagging author
 replies vs. community responses, to measure sentiment divergence over time.
 
-Built for "Distinguishing Technical Problem Solving and General Discontent
-in Reddit Software Update Discussions" (ICMLA 2026, Paper 483). Each
-function below maps to a specific reviewer request; see the module
-docstrings for which one.
-
 ## Install
 
 ```
