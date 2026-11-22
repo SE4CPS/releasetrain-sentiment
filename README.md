@@ -15,7 +15,7 @@ Two optional extras:
 
 ```
 pip install releasetrain-sentiment[classify]   # TPS/GDS classifier (scikit-learn)
-pip install releasetrain-sentiment[fetch]      # live ReleaseTrain API wrapper (requests)
+pip install releasetrain-sentiment[fetch]      # live releasetrain API wrapper (requests)
 ```
 
 ## Quickstart: scoring a thread
@@ -94,7 +94,7 @@ Classify text(s) with a model you've already trained and saved with
 releasetrain-sentiment classify --model tps_gds_model.joblib "the app crashed again"
 ```
 
-Pull recent posts from a live ReleaseTrain instance and convert them to
+Pull recent posts from a live releasetrain instance and convert them to
 this package's scoreable shape in one step (requires
 `pip install releasetrain-sentiment[fetch]`):
 
@@ -106,7 +106,7 @@ releasetrain-sentiment score --input posts.json --pretty
 ## Modules
 
 - `score.py`: the scorer above. Pure function, no network calls, no
-  ReleaseTrain coupling. Standard VADER thresholds (compound >= 0.05
+  releasetrain coupling. Standard VADER thresholds (compound >= 0.05
   positive, <= -0.05 negative).
 - `baseline_vader.py`: a reconstruction of the paper's "technical_first"
   VADER baseline described in Reviewer #7's feedback (a keyword
@@ -129,7 +129,7 @@ releasetrain-sentiment score --input posts.json --pretty
   GDS threads); `evaluate_predictions()` is a small precision/recall/F1
   harness for testing the "helps developers find useful reports" claim
   against a labeled ground truth, however small.
-- `fetch.py`: an optional thin wrapper around ReleaseTrain's
+- `fetch.py`: an optional thin wrapper around releasetrain's
   `/api/reddit` endpoint, isolated from every other module so none of
   them need network access to run or be tested.
 - `cli.py`: the `releasetrain-sentiment` console script (see "Command-line
